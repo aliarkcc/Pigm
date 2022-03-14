@@ -1,0 +1,21 @@
+﻿@model List<Entities.Dtos.UserDtos.UserDetailDto>
+ 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<table>
+    <tr>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Email</td>
+            <td>@item.DateOfBirth</td>
+        </tr>
+    }
+</table>

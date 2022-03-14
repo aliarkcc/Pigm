@@ -1,0 +1,74 @@
+﻿@model Entities.Concrete.FollowList
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+<div>
+    <table>
+        <form asp-controller="Ihracat" asp-action="Add" method="post">
+            <tr>
+                <td>
+                    <label asp-for="InvoiceNo">Fatura Numarası</label><br />
+                    <input asp-for="InvoiceNo" autofocus />
+                </td>
+                <td>
+                    <label asp-for="Segment">Segment</label><br />
+                    <input asp-for="Segment" />
+                </td>
+                <td>
+                    <label asp-for="SerialNo">Seri Numarası</label><br />
+                    <input asp-for="SerialNo" />
+                </td>
+                <td>
+                    <label asp-for="Well">Kuyu</label><br />
+                    <input asp-for="Well" />
+                </td>
+                <td>
+                    <label asp-for="PigmNo">Pigm Numarası</label><br />
+                    <input asp-for="PigmNo" />
+                </td>
+                <td>
+                    <label asp-for="PigmNo">Pigm Numarası</label><br />
+                    <input asp-for="PigmNo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="PetitionNo">Dilekçe Numarası</label><br />
+                    <input asp-for="PetitionNo" />
+                </td>
+                <td>
+                    <label asp-for="Used">Kullanılmış mı</label><br />
+                    <input asp-for="Used" />
+                </td>
+                <td>
+                    <label asp-for="FrontIndexStatus">Ön Dizin Durumu</label><br />
+                    <input asp-for="FrontIndexStatus" />
+                </td>
+                <td>
+                    <label asp-for="Explanation">Açıklama</label><br />
+                    <input asp-for="Explanation" />
+                </td>
+                <td>
+                    <label asp-for="RecourseDate">Kayıt Tarihi</label><br />
+                    <input asp-for="RecourseDate" />
+                </td>
+                <td>
+                    <label asp-for="TpsNo">Tps Numarası</label><br />
+                    <input asp-for="TpsNo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="DocumentNo">Belge Numarası</label><br />
+                    <input asp-for="DocumentNo" />
+                </td>
+                <td>
+                    <label asp-for="RatificationDate">Kabul Tarihi</label><br />
+                    <input asp-for="RatificationDate" />
+                </td>
+                <td align="center"><br /><input type="submit" value="Kaydet" class="btn btn-success" /></td>
+            </tr>
+        </form>
+    </table>
+</div>

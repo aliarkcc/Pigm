@@ -1,0 +1,37 @@
+﻿@using Entities.Concrete
+@model List<Company>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Şirket Adı</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.CompanyName</td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Select</label>
+
+    <div class="col-sm-10">
+        <select class="form-control m-b" name="account">
+            <option>option 1</option>
+            <option>option 2</option>
+            <option>option 3</option>
+            <option>option 4</option>
+        </select>
+    </div>
+</div>
+<button class="btn btn-primary btn-sm" type="submit">Save changes</button>
