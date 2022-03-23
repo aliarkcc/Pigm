@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Core.Utilities.Result;
+using Entities.Dtos.UserDtos;
 using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    interface IAuthService
+    public interface IAuthService
     {
+        Task<IDataResult<UserDto>> LoginAsync(LoginDto loginDto);
     }
 }

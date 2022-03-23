@@ -168,13 +168,13 @@ namespace Business.Concrete
 
         }
 
-        public async Task<AccessToken> Authenticate(UserForLoginDto userForLoginDto)
-        {
-            var user = await _userDal.GetAsync(x => x.UserName == userForLoginDto.UserName && x.Password == userForLoginDto.Password);
-            if (user == null)
-                return null;
+        //public async Task<AccessToken> Authenticate(LoginDto userForLoginDto)
+        //{
+        //    var user = await _userDal.GetAsync(x => x.UserName == userForLoginDto.UserName && x.Password == userForLoginDto.Password);
+        //    if (user == null)
+        //        return null;
 
-        }
+        //}
 
         public async Task<IDataResult<UserDto>> GetByIdAsync(int id)
         {

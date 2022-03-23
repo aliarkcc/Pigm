@@ -19,6 +19,6 @@ namespace Business.Abstract
         Task<IDataResult<UserDto>> AddAsync(UserAddDto userAddDto);
         Task<IResult> DeleteAsync(int id);
         Task<IDataResult<UserUpdateDto>> UpdateAsync(UserUpdateDto userUpdateDto);
-        Task<AccessToken> Authenticate(UserForLoginDto userForLoginDto);
+        //Task<AccessToken> Authenticate(LoginDto userForLoginDto);
     }
 }

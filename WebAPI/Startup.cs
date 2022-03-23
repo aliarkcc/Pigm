@@ -42,6 +42,7 @@ namespace WebAPI
             services.AddTransient<IFollowListDal, EfFollowListDal>();
             services.AddTransient<IFollowListService, FollowListManager>();
             services.AddTransient<ITokenService, JwtTokenManager>();
+            services.AddTransient<IAuthService, AuthManager>();
 
             #region Mapper
             var mapperConfig = new MapperConfiguration(mc =>
