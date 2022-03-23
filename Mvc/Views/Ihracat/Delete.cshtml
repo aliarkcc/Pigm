@@ -1,0 +1,80 @@
+﻿@model Entities.Concrete.FollowList
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+<div>
+    <table>
+        <thead>
+        <th style="font-size:25px">Silmek İstediğinize Emin Misiniz?</th>
+        </thead>
+        <form asp-controller="Ihracat" asp-action="Delete" method="post">
+            <tr>
+                <td>
+                    <label asp-for="InvoiceNo">Fatura Numarası</label><br />
+                    <input asp-for="InvoiceNo" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="Segment">Segment</label><br />
+                    <input asp-for="Segment" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="SerialNo">Seri Numarası</label><br />
+                    <input asp-for="SerialNo" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="Well">Kuyu</label><br />
+                    <input asp-for="Well" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="PigmNo">Pigm Numarası</label><br />
+                    <input asp-for="PigmNo" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="PigmNo">Pigm Numarası</label><br />
+                    <input asp-for="PigmNo" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="PetitionNo">Dilekçe Numarası</label><br />
+                    <input asp-for="PetitionNo" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="Used">Kullanılmış mı</label><br />
+                    <input asp-for="Used" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="FrontIndexStatus">Ön Dizin Durumu</label><br />
+                    <input asp-for="FrontIndexStatus" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="Explanation">Açıklama</label><br />
+                    <input asp-for="Explanation"readonly="readonly" />
+                </td>
+                <td>
+                    <label asp-for="RecourseDate">Kayıt Tarihi</label><br />
+                    <input asp-for="RecourseDate" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="TpsNo">Tps Numarası</label><br />
+                    <input asp-for="TpsNo" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="DocumentNo">Belge Numarası</label><br />
+                    <input asp-for="DocumentNo" readonly="readonly"/>
+                </td>
+                <td>
+                    <label asp-for="RatificationDate">Kabul Tarihi</label><br />
+                    <input asp-for="RatificationDate" readonly="readonly"/>
+                </td>
+                <td align="center">
+                <br /><input type="submit" value="Sil" class="btn btn-danger" />
+                <a class="btn btn-info" asp-action="Index">Vazgeç</a>
+                </td>
+            </tr>
+        </form>
+    </table>
+</div>

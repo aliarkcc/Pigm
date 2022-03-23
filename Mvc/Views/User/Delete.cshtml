@@ -1,0 +1,70 @@
+﻿@model Mvc.ViewModels.UserDeleteViewModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+
+<html>
+<head>
+
+    <link href="~/adminPages/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h6 class="text-danger"> Bu Kullanıcıyı Silmek istediğinize emin misiniz?</h6><br />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Delete" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group>
+                    <label asp-for="Id">ID:</label><br />
+                    <input asp-for="Id" autofocus readonly />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="UserName">Kullanıcı Adı:</label><br />
+                    <input asp-for="UserName" autofocus readonly />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="FirstName">Ad:</label><br />
+                    <input asp-for="FirstName" readonly />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Password">Soyad:</label><br />
+                    <input asp-for="Password" readonly />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="">Soyad:</label><br />
+                    <input asp-for="LastName" readonly />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="GenderName">Cinsiyet:</label><br />
+                    <select class="form-control" asp-for="GenderName" readonly></select>
+                    <span asp-validation-for="GenderName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="DateOfBirth">Doğum Tarihi:</label><br />
+                    <input asp-for="DateOfBirth" readonly />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Email">Email:</label><br />
+                    <input asp-for="Email" readonly />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Address">Adres:</label><br />
+                    <input asp-for="Address" readonly />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Sil" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

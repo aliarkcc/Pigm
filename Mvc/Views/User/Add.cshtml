@@ -1,0 +1,63 @@
+﻿@model Mvc.ViewModels.UserAddViewModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+<html>
+<head>
+
+    <link href="~/adminPages/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Add" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group>
+                    <label asp-for="UserName">Kullanıcı Adı:</label><br />
+                    <input asp-for="UserName" autofocus />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="FirstName">Ad:</label><br />
+                    <input asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="LastName">Soyad:</label><br />
+                    <input asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Password">Şifre:</label><br />
+                    <input asp-for="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="GenderId">Cinsiyet:</label><br />
+                    <select class="form-control" asp-for="GenderId" asp-items="@(new SelectList(ViewBag.GenderList,"Id","GenderName"))"></select>
+                    <span asp-validation-for="GenderId" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="DateOfBirth">Doğum Tarihi:</label><br />
+                    <input asp-for="DateOfBirth" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Email">Email:</label><br />
+                    <input asp-for="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group>
+                    <label asp-for="Address">Adres:</label><br />
+                    <input asp-for="Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Ekle" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

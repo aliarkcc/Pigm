@@ -1,21 +1,65 @@
 ﻿@model List<Entities.Dtos.UserDtos.UserDetailDto>
- 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_GlobalLayout.cshtml";
 }
+<html>
+<head>
+    <link href="~/adminPages/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/adminPages/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-<h1>Index</h1>
+    <!-- Toastr style -->
+    <link href="~/adminPages/css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
-<table>
-    <tr>
-        <td></td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Email</td>
-            <td>@item.DateOfBirth</td>
-        </tr>
-    }
-</table>
+    <!-- Gritter -->
+    <link href="~/adminPages/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="~/adminPages/css/animate.css" rel="stylesheet">
+    <link href="~/adminPages/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h1>Kullanıcılar</h1><br />
+        <div class="row">
+            <div class="col-sm-3 m-b-xxs">
+                <a class="btn btn-primary" asp-action="Add">Kullanıcı Ekle</a>
+            </div>
+        </div>
+        <table class="table table-responsive table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Kullanıcı Adı</td>
+                    <td>Adı</td>
+                    <td>Soyadı</td>
+                    <td>Cinsiyeti</td>
+                    <td>Doğum Tarihi</td>
+                    <td>E-posta</td>
+                    <td>Adres</td>
+                    <td>İşlemler</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.UserName</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Gender</td>
+                        <td>@item.DateOfBirth</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-success">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

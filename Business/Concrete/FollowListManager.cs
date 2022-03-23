@@ -18,43 +18,47 @@ namespace Business.Concrete
             _followList = followList;
         }
 
-        public IResult Add(FollowList entity)
+        public async Task<IResult> AddAsync(FollowList entity)
         {
-            _followList.Add(entity);
+            await _followList.AddAsync(entity);
             return new SuccessResult();
         }
 
-        public IResult Delete(int id)
+        public async Task<IResult> DeleteAsync(int id)
         {
-            _followList.Delete(id);
+            await _followList.DeleteAsync(id);
             return new SuccessResult();
         }
 
-        public async Task<IDataResult<List<FollowList>>> GetAll(Expression<Func<FollowList, bool>> filter = null)
+        public async Task<IDataResult<List<FollowList>>> GetAllAsync(Expression<Func<FollowList, bool>> filter = null)
         {
             
             if(filter==null)
             {
-                List<FollowList> result = await _followList.GetAll();
+                var result = await _followList.GetAllAsync();
                 return new SuccessDataResult<List<FollowList>>(result, "Listed");
             }
             else
             {
-                List<FollowList> result = await _followList.GetAll(filter);
+                var result = await _followList.GetAllAsync(filter);
                 return  new SuccessDataResult<List<FollowList>>(result, "Listed");
             }
             
         }
 
-        public IDataResult<FollowList> GetById(int id)
+        public async Task<IDataResult<FollowList>> GetByIdAsync(int id)
         {
-            var result = _followList.Get(x => x.Id == id);
-            return new SuccessDataResult<FollowList> (result, "Listed");
+            var result =await _followList.GetAsync(x => x.Id == id);
+            if (result!=null)
+            {
+                return new SuccessDataResult<FollowList>(result, "Listed");
+            }
+            return new ErrorDataResult<FollowList>(result, "Listed");
         }
 
-        public IResult Update(FollowList entity)
+        public async Task<IResult> UpdateAsync(FollowList entity)
         {
-            _followList.Update(entity);
+            await _followList.UpdateAsync(entity);
             return new SuccessResult();
         }
     }

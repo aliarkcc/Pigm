@@ -1,14 +1,8 @@
-﻿using Business.Abstract;
-using ClosedXML.Excel;
-using Core.Utilities.Result;
+﻿using ClosedXML.Excel;
 using DataAccess.Context;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Mvc.Models;
-using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,17 +12,15 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using X.PagedList;
-using Newtonsoft.Json;
-using System.Threading;
 
 namespace Mvc.Controllers
 {
-    public class IhracatController : Controller
+    public class IthalatController : Controller
     {
         private readonly HttpClient _httpClient;
         private string url = "http://localhost:54694/api/";
 
-        public IhracatController(HttpClient httpClient)
+        public IthalatController(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -45,7 +37,7 @@ namespace Mvc.Controllers
             ViewBag.CurrentFilter = searching;
 
             var followList = await _httpClient.GetFromJsonAsync<ApiListResponseModel<FollowList>>(url + "FollowLists/GetList");
-            followList.data = followList.data.Where(x => x.ImportExportId == 1).ToList();
+            followList.data = followList.data.Where(x => x.ImportExportId == 2).ToList();
             if (!string.IsNullOrEmpty(searching))
             {
                 followList.data = followList.data.Where(x => x.InvoiceNo.Contains(searching)).ToList();
@@ -62,19 +54,19 @@ namespace Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(FollowList followList)
         {
-            followList.ImportExportId = 1;
+            followList.ImportExportId = 2;
             followList.CompanyId = 1;
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(url + "FollowLists/Add",followList);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(url + "FollowLists/Add", followList);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Ihracat");
+                return RedirectToAction("Index", "Ithalat");
             }
             return View();
         }
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var result = await _httpClient.GetFromJsonAsync<ApiResponseModel<FollowList>>(url + "FollowLists/GetById/"+id);
+            var result = await _httpClient.GetFromJsonAsync<ApiResponseModel<FollowList>>(url + "FollowLists/GetById/" + id);
             if (result.success)
             {
                 return View(result.data);
@@ -84,12 +76,12 @@ namespace Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(FollowList followList)
         {
-            followList.ImportExportId = 1;
+            followList.ImportExportId = 2;
             followList.CompanyId = 1;
             HttpResponseMessage responseMessage = await _httpClient.PutAsJsonAsync(url + "FollowLists/Update", followList);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Ihracat");
+                return RedirectToAction("Index", "Ithalat");
             }
             return View();
         }
@@ -103,13 +95,13 @@ namespace Mvc.Controllers
             }
             return BadRequest();
         }
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(FollowList followList)
         {
             var isDelete = await _httpClient.DeleteAsync(url + "FollowLists/Delete/" + followList.Id);
             if (isDelete.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Ihracat");
+                return RedirectToAction("Index", "Ithalat");
             }
             return BadRequest();
         }

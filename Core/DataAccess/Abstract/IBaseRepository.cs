@@ -9,10 +9,10 @@ namespace Core.DataAccess.Abstract
 {
     public interface IBaseRepository<T> where T:class,new()
     {
-        Task<List<T>> GetAll(Expression<Func<T, bool>> filter = null);
-        T Get(Expression<Func<T,bool>>filter);
-        T Add(T entity);
-        bool Delete(int id);
-        T Update(T entity);
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
+        Task<T> GetAsync(Expression<Func<T,bool>>filter);
+        Task<T> AddAsync(T entity);
+        Task<bool> DeleteAsync(int id);
+        Task<T> UpdateAsync(T entity);
     }
 }

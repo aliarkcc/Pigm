@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Mvc.Models.Abstract;
 
 namespace Mvc.Models
 {
-    public class ApiResponseModel<T>
+    public class ApiResponseModel<T> : IApiResponseModel
     {
-        public List<T> data{ get; set; }
-        public bool success { get; set; }
-        public string message { get; set; }
+        public T data { get; set; }
+        public bool success { get ; set; }
+        public string message { get ; set; }
     }
 }

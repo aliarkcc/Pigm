@@ -9,10 +9,10 @@ namespace Business.Abstract
 {
     public interface ICompanyService
     {
-        Task<IDataResult<List<Company>>> GetAll();
-        IDataResult<Company> GetById(int id);
-        IResult Add(Company entity);
-        IResult Delete(int id);
-        IResult Update(Company entity);
+        Task<IDataResult<List<Company>>> GetAllAsync(Expression<Func<Company,bool>>filter=null);
+        Task<IDataResult<Company>> GetByIdAsync(int id);
+        Task<IResult> AddAsync(Company entity);
+        Task<IResult> DeleteAsync(int id);
+        Task<IResult> UpdateAsync(Company entity);
     }
 }

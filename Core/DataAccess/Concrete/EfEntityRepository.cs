@@ -13,39 +13,38 @@ namespace Core.DataAccess.Concrete
         where TEntity:class,IEntity,new()
         where TContext:DbContext,new()
     {
-        public TEntity Add(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
             using (TContext db= new TContext())
             {
-                var addedEntity = db.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                db.SaveChanges();
+                await db.Set<TEntity>().AddAsync(entity);
+                await db.SaveChangesAsync();
                 return entity;
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             using (TContext db= new TContext())
             {
-                var deletedEntity = db.Set<TEntity>().Find(id);
-                db.Set<TEntity>().Remove(deletedEntity);
-                var data = db.SaveChanges();
+                var deleteEntity = await db.Set<TEntity>().FindAsync(id);
+                db.Set<TEntity>().Remove(deleteEntity);
+                var data = await db.SaveChangesAsync();
                 if (data > 0)
                     return true;
                 return false;
             }
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext db= new TContext())
             {
-                return db.Set<TEntity>().SingleOrDefault(filter);
+                return await db.Set<TEntity>().SingleOrDefaultAsync(filter);
             }
         }
 
-        public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext db= new TContext())
             {
@@ -55,13 +54,12 @@ namespace Core.DataAccess.Concrete
             }
         }
 
-        public TEntity Update(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             using (TContext db= new TContext())
             {
-                var updatedEntity = db.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                db.SaveChanges();
+                db.Set<TEntity>().Update(entity);
+                await db.SaveChangesAsync();
                 return entity;
             }
         }

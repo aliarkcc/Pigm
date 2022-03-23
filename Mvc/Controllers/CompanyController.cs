@@ -18,7 +18,7 @@ namespace Mvc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var result =await _companyService.GetAll();
+            var result =await _companyService.GetAllAsync();
             if (result.Success)
             {
                 return View(result.Data);

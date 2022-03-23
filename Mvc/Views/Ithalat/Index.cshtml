@@ -1,0 +1,113 @@
+﻿@model X.PagedList.IPagedList<Entities.Concrete.FollowList>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_GlobalLayout.cshtml";
+}
+<html>
+<head>
+    <link href="~/adminPages/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/adminPages/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="~/adminPages/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="~/adminPages/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="~/adminPages/css/animate.css" rel="stylesheet">
+    <link href="~/adminPages/css/style.css" rel="stylesheet">
+    <style>
+        td {
+            width: 200px;
+            border: 1px solid #000000;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form asp-controller="Ithalat" asp-action="Index" method="get">
+            <div class="row">
+                <div class="col-sm-3 m-b-xxs">
+                    <a href="/Ithalat/Add" class="btn btn-success">Yeni Kayıt Ekle</a>
+                </div>
+                <div class="col-sm-3 m-b-xl">
+                    <a href="/Ithalat/ExportExcel" class="btn btn-primary">Excel'e Aktar</a>
+                </div>
+                <div class="col-sm-3">
+                    @*<input placeholder="Fatura No" type="text" class="form-control form-control-sm" name="searching" asp-action="Index">*@
+                    @using (Html.BeginForm("Index", "Ithalat", FormMethod.Get))
+                    {
+                        <div>
+                            @Html.TextBox("searching", ViewBag.CurrentFilter as string)
+                            @*<input type="submit" value="Ara!"/>*@
+                        </div>
+
+                    }
+                </div>
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-sm btn-primary">Ara!</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-responsive table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Fatura No</th>
+                    <th>Segment</th>
+                    <th>Seri No</th>
+                    <th>Kuyu</th>
+                    <th>Pigm No</th>
+                    <th>Dilekçe No</th>
+                    <th>Kullanılmış mı</th>
+                    <th>Ön Dizin Drm</th>
+                    <th>Açıklama</th>
+                    <th>Kayıt Trh</th>
+                    <th>Tps No</th>
+                    <th>Belge No</th>
+                    <th>Kabul Trh</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" style="color:red">Kayıt Bulunamadı.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="kisaltma">@item.InvoiceNo</td>
+                            <td class="kisaltma">@item.Segment</td>
+                            <td class="kisaltma">@item.SerialNo</td>
+                            <td class="kisaltma">@item.Well</td>
+                            <td class="kisaltma">@item.PigmNo</td>
+                            <td class="kisaltma">@item.PetitionNo</td>
+                            <td class="kisaltma">@item.Used</td>
+                            <td class="kisaltma">@item.FrontIndexStatus</td>
+                            <td class="kisaltma">@item.Explanation</td>
+                            <td class="kisaltma">@item.RecourseDate</td>
+                            <td class="kisaltma">@item.TpsNo</td>
+                            <td class="kisaltma">@item.DocumentNo</td>
+                            <td class="kisaltma">@item.RatificationDate</td>
+                            <td>
+                                <a asp-action="Update" asp-route-id="@item.Id" class="badge badge-success">Düzenle</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="badge badge-danger">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        @*@Html.PagedListPager(Model, page => Url.Action("Index", "Ihracat", new { searching="", sayfa = page }))*@
+        Sayfa @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</body>
+</html>

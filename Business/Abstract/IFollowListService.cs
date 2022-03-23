@@ -11,10 +11,10 @@ namespace Business.Abstract
 {
     public interface IFollowListService
     {
-        Task<IDataResult<List<FollowList>>> GetAll(Expression<Func<FollowList,bool>>filter=null);
-        IDataResult<FollowList> GetById(int id);
-        IResult Add(FollowList entity);
-        IResult Delete(int id);
-        IResult Update(FollowList entity);
+        Task<IDataResult<List<FollowList>>> GetAllAsync(Expression<Func<FollowList,bool>>filter=null);
+        Task<IDataResult<FollowList>> GetByIdAsync(int id);
+        Task<IResult> AddAsync(FollowList entity);
+        Task<IResult> DeleteAsync(int id);
+        Task<IResult> UpdateAsync(FollowList entity);
     }
 }
